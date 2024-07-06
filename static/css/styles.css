@@ -1,0 +1,85 @@
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #656565;
+    text-align: left;
+    background-color: #ffffff;
+}
+
+.container {    
+    margin: 0 auto; /* Centra horizontalmente */    
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Centra horizontalmente */      
+    margin-bottom: 10px;
+}
+
+#video-container {
+    width: 60%;
+    margin: auto;    
+}
+.centrado {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#video {
+    width: 100%;
+    height: auto;
+}
+
+.btn btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+
+table {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 70%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 3px;
+}
+
+th {
+    background-color: hsl(160, 74%, 51%);
+}
+
+.img-cell {
+    max-width: 50px; /* Ajusta el ancho máximo según tus necesidades */    
+}
+
+.img-cell img {
+    width: 70%; /* La imagen ocupará el 100% del contenedor (celda) */
+    height: auto;
+    display: block;
+    margin: auto; /* Centra la imagen verticalmente */
+}

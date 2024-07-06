@@ -1,0 +1,361 @@
+<!-- info_reba.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERGORICE - Información REBA</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Otros estilos si es necesario -->
+    <!-- LOGO -->
+    <link href="{{ url_for('static', filename='imagenes/logo.png') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></script> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/scripts.js') }}">
+</head>
+<body class="bg-light">
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <p><i class="fa fa-envelope mr-2"></i>ergo-rice@hotmail.com</p>
+                        <p class="text-body px-3">|</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>+593 0982028735</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center text-lg-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a class="text-primary px-3" href="">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="text-primary pl-3" href="">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <img src="{{ url_for('static', filename='imagenes/logo.png') }}" width="90" height="90">
+                <a href="" class="navbar-brand">
+                    <h1 class="m-0 text-primary"><span class="text-dark">ERGO</span>RICE</h1>
+                </a>                
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="/" class="nav-item nav-link active">Home</a>
+                        <a href="manual" class="nav-item nav-link">Manual</a>
+                        <a href="ejemplos" class="nav-item nav-link">Ejemplos</a>                    
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Métodos de Evaluación</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a href="info_reba" class="dropdown-item">REBA</a>
+                                <a href="info_rula" class="dropdown-item">RULA</a>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Blog Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Blog Detail Start -->
+                    <div class="pb-3">
+                        <div class="blog-item">
+                            <div class="d-flex mb-3 d-flex justify-content-center">
+                                <a class="text-primary text-uppercase text-decoration-none">Método de Evaluación</a>
+                                <span class="text-primary px-2">|</span>
+                                <a class="text-primary text-uppercase text-decoration-none">REBA</a>
+                            </div>
+                            <div class="position-relative d-flex justify-content-center">
+                                <img class="img-fluid w-50" src="{{ url_for('static', filename='imagenes/Metodo-REBA-Grupo-A-Grupo-B.png') }}" alt="">                                
+                            </div>
+                        </div>
+                        <div class="bg-white mb-3" style="padding: 30px;">                            
+                            <h2 class="mb-3">INTRODUCCIÓN</h2>
+                            <p>El Método de Evaluación REBA (Rapid Entire Body Assessment) es una herramienta ergonómica 
+                                utilizada para evaluar la postura y los movimientos del cuerpo humano en diversas actividades 
+                                laborales o tareas. Fue desarrollado por Sue Hignett y Lynn McAtamney en el Reino Unido a principios 
+                                de la década de 1990 como una forma de identificar y abordar los riesgos de lesiones musculoesqueléticas 
+                                relacionadas con el trabajo.
+                            </p>
+                            <p>El método REBA se basa en la premisa de que las posturas corporales inadecuadas y los movimientos 
+                                repetitivos pueden contribuir al desarrollo de lesiones y trastornos musculoesqueléticos entre los 
+                                trabajadores. Por lo tanto, su objetivo principal es evaluar la ergonomía de una tarea específica 
+                                y proporcionar recomendaciones para minimizar los riesgos asociados con esa tarea.
+                            </p>
+                            <p>Este método ha sido elaborado a partir del método RULA que, además de analizar el efecto de los factores 
+                                posturales dinámicos y estáticos de los miembros superiores (valorando hombros, codos, antebrazos y 
+                                muñecas), la columna (cervical, lumbar) y la posición de las piernas (pierna y rodilla), también 
+                                analiza la interface hombre-tarea (en función de la fuerza-carga necesaria en su ejecución y el 
+                                acoplamiento) e incorpora un nuevo concepto: el de posición asistida por la gravedad del miembro superior.
+                            </p>
+                            <h4 class="mb-3">Define además:</h4>
+                            <p>
+                                <ul class="list-inline m-0">
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>La carga o fuerza manejada</a>                                    
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>El tipo de agarre</a>                                    
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>El tipo de actividad muscular desarrollada por el trabajador</a>                                    
+                                    </li>                                                               
+                                </ul>
+                            </p>
+                            <h4 class="mb-3">El método analiza:</h4>
+                            <img class="img-fluid float-left ml-4 mb-2" src="{{ url_for('static', filename='imagenes/reba_grupos.png') }}" width="300" height="350">
+                            <p>
+                                <ul class="list-inline m-0">
+                                    <h4><li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Grupo A : lo sucedido en el eje corporal formado por el cuello, tronco y las piernas.</a>                                    
+                                    </li></h4>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a>En el cuello existen dos posibilidades:</a>                                        
+                                    </li>
+                                    <table border="1">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Está recto o flexionado en un ángulo menor de 20º</th>
+                                                <th colspan="1" style="text-align: center;">(1)</th>   
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Existe más de 20º de flexión o el cuello está extendido</th>
+                                                <th colspan="1" style="text-align: center;">(2)</th>   
+                                            </tr>                                    
+                                            <tr>
+                                                <th colspan="6" style="text-align: center;">A esta puntuación se le añade un punto si el cuello 
+                                                    está inclinado o girado hacia los lados. La puntuación máxima es de (3).</th>                                                  
+                                            </tr>                                            
+                                        </thead>                                                
+                                    </table>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a>En el tronco, se contemplan cuatro posibilidades de flexión:</a>                                        
+                                    </li>
+                                    <table border="1">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Totalmente neutra</th>
+                                                <th colspan="1" style="text-align: center;">(1)</th>   
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Hasta 20º de flexión o extensión</th>
+                                                <th colspan="1" style="text-align: center;">(2)</th>   
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Entre 20 y 60º de flexión ó en extensión de más de 20º</th>
+                                                <th colspan="1" style="text-align: center;">(3)</th>   
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Más de 60º de flexión</th>
+                                                <th colspan="1" style="text-align: center;">(4)</th>   
+                                            </tr>                                    
+                                            <tr>
+                                                <th colspan="6" style="text-align: center;">En la postura sentada, se considera que el tronco está recto si el trabajador 
+                                                    se mantiene así voluntariamente o la espalda se encuentra bien apoyada en el respaldo. Al igual que en el cuello se 
+                                                    añade un punto más si existe desviación de la línea media, para una puntuación máxima de 5.</th>                                                  
+                                            </tr>                                            
+                                        </thead>                                                
+                                    </table>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a>En miembros inferiores hay dos posibilidades:</a>                                        
+                                    </li>
+                                    <table border="1">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Si está caminando o los pies se encuentran bien apoyados en el suelo, en postura estable</th>
+                                                <th colspan="1" style="text-align: center;">(1)</th>   
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Si la postura es inestable o los pies no están bien apoyados</th>
+                                                <th colspan="1" style="text-align: center;">(2)</th>   
+                                            </tr>                                    
+                                            <tr>
+                                                <th colspan="6" style="text-align: center;">En las piernas se penaliza con uno ó dos puntos la postura si 
+                                                    en el trabajo se necesita flexión de rodillas. Flexion de rodillas de 30° a 60° se suma 1, si es mayor a 60° se suma 2. 
+                                                    La puntuación máxima posible es de 4.</th>                                                  
+                                            </tr>                                            
+                                        </thead>                                                
+                                    </table>
+                                    <p>
+                                        Luego de determinar la puntuación para el grupo A, se procede a determinar la puntuacion segun la Tabla A, lo que 
+                                        será el resultado final del Grupo A:
+                                    </p>
+                                    <img class="img-fluid w-80" src="{{ url_for('static', filename='imagenes/reba_tablaA.png') }}" alt="">                                    
+                                    <p>
+                                        Ahora, se procede a verificar si la puntuación resultante puede ser modificada según la Tabla de Carga/Fuerza, la cual mantiene 
+                                        las siguientes condiciones:
+                                    </p>
+                                    <img class="img-fluid w-70" src="{{ url_for('static', filename='imagenes/reba_carga.png') }}" alt="">                                    
+                                    <h4 style="padding-top: 20px;"><li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Grupo B: la carga postural del miembro superior: brazo, antebrazo, muñeca.</a>                                    
+                                    </li></h4>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a>En el hombro:</a>                                        
+                                    </li>
+                                    <table border="1">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Si la flexión o extensión es igual o menor de 20º</th>
+                                                <th colspan="1" style="text-align: center;">(1)</th>   
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Entre 20º y 45º de flexión o más de 20º de extensión</th>
+                                                <th colspan="1" style="text-align: center;">(2)</th>   
+                                            </tr>                                    
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Cuando el brazo se encuentra entre 45º y 90º de flexión de hombro</th>
+                                                <th colspan="1" style="text-align: center;">(3)</th>   
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Si está por encima del nivel de los hombros</th>
+                                                <th colspan="1" style="text-align: center;">(4)</th>   
+                                            </tr>                                            
+                                        </thead>                                                
+                                    </table>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a>En el codo únicamente se contempla lo que sucede en el plano sagital:</a>                                        
+                                    </li>
+                                    <table border="1">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Codo flexionado entre 60º y 100º</th>
+                                                <th colspan="1" style="text-align: center;">(1)</th>   
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Codo flexionado por debajo de 60º o por encima de 100º</th>
+                                                <th colspan="1" style="text-align: center;">(2)</th>   
+                                            </tr>                                                                                        
+                                        </thead>                                                
+                                    </table>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a>En la muñeca hay dos posibilidades:</a>                                        
+                                    </li>
+                                    <table border="1">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Si está en postura neutra, o en flexión/extensión menor de 15º</th>
+                                                <th colspan="1" style="text-align: center;">(1)</th>   
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5" style="text-align: left;">Cuando la flexión o extensión es mayor de 15º</th>
+                                                <th colspan="1" style="text-align: center;">(2)</th>   
+                                            </tr>                                    
+                                            <tr>
+                                                <th colspan="6" style="text-align: center;">A esta puntuación se le añadirá otro punto más si existe
+                                                     desviación radial o cubital de la muñeca o cuando el antebrazo está girado.La puntuación máxima posible de muñeca es de 3.</th>                                                  
+                                            </tr>                                            
+                                        </thead>                                                
+                                    </table>
+                                    <p>
+                                        Luego de determinar la puntuación para el grupo B, se procede a determinar la puntuacion segun la Tabla B, lo que 
+                                        será el resultado final del Grupo B:
+                                    </p>
+                                    <img class="img-fluid w-80" src="{{ url_for('static', filename='imagenes/reba_tablaB.png') }}" alt="">                                    
+                                    <p>
+                                        Ahora, se procede a verificar si la puntuación resultante puede ser modificada según la Tabla de Agarre, la cual mantiene 
+                                        las siguientes condiciones:
+                                    </p>
+                                    <img class="img-fluid w-70" src="{{ url_for('static', filename='imagenes/reba_agarre.png') }}" alt="">                                                                                                   
+                                </ul>
+                            </p>
+                            <h5 class="mb-3">Puntuación Final</h5>
+                            <p>
+                                Para una puntuación final primero se debe pasar las dos puntuaciones finales anteriores a la Tabla C, par lo cual 
+                                también se puede modificar según la actividad que se realiza:
+                            </p>
+                            <img class="img-fluid w-70" src="{{ url_for('static', filename='imagenes/reba_tablaC.png') }}" alt="">
+                            <h5 class="mb-3">Nivel de Acción</h5>
+                            <p>
+                                Ahora si, finalmente se detalla la tabla del nivel de acción que se debe tomar según el resultado obtenido en la Tabla C incluida la modificación 
+                                o agregación. La tabla muestra la intervención a tomar por cada rango de puntuación:
+                            </p>
+                            <img class="img-fluid w-70" src="{{ url_for('static', filename='imagenes/reba_tablafinal.png') }}" alt="">
+                        </div>
+                    </div>
+                    <!-- Blog Detail End -->                                        
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!-- Blog End -->
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+        <div class="row pt-5">
+            <div class="col-lg-4 col-md-6 mb-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-primary"><span class="text-white">ERGO</span>RICE</h1>
+                </a>
+                <p>Realiza evaluaciones de posturas ergonómicas de forma rápida y sencilla.</p>                
+            </div>            
+            <div class="col-lg-4 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Enlaces rápidos</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="/registro"><i class="fa fa-angle-right mr-2"></i>Registrarse</a>
+                    <a class="text-white-50 mb-2" href="/login"><i class="fa fa-angle-right mr-2"></i>Iniciar sesión</a>
+                    <a class="text-white-50 mb-2" href="/manual"><i class="fa fa-angle-right mr-2"></i>Manual</a>
+                    <a class="text-white-50 mb-2" href="/ejemplos"><i class="fa fa-angle-right mr-2"></i>Ejemplos</a>
+                    <a class="text-white-50 mb-2" href="/info_reba"><i class="fa fa-angle-right mr-2"></i>Reba</a>
+                    <a class="text-white-50 mb-2" href="/info_rula"><i class="fa fa-angle-right mr-2"></i>Rula</a>                    
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contáctanos</h5>                
+                <p><i class="fa fa-phone-alt mr-2"></i>+593 0982028735</p>
+                <p><i class="fa fa-envelope mr-2"></i>ergo-rice@hotmail.com</p>                                
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-12 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white-50">Copyright &copy; <a href="#">ergorice</a>. All Rights Reserved.</a>
+                </p>
+            </div>            
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+</body>
