@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERGORICE - Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Otros estilos si es necesario -->
+    <!-- LOGO -->
+    <link href="{{ url_for('static', filename='imagenes/logo.png') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></script> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/scripts.js') }}">
+</head>
+<body class="bg-light">
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <p><i class="fa fa-envelope mr-2"></i>ergo-rice@hotmail.com</p>
+                        <p class="text-body px-3">|</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>+593 0982028735</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center text-lg-right">
+                    <div class="d-inline-flex align-items-center">                        
+                        <a id= "salir" class="text-primary pl-3" href="cerrar_sesion">Cerrar Sesión
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->    
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <img src="{{ url_for('static', filename='imagenes/logo.png') }}" width="90" height="90">
+                <a href="" class="navbar-brand">
+                    <h1 class="m-0 text-primary"><span class="text-dark">ERGO</span>RICE</h1>
+                </a>                
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <a href="" class="navbar-brand ml-auto py-0">
+                        {% if metodo_evaluacion == 'RULA' %}
+                            <h1 class="m-0 text-primary"><span class="text-dark">EVALUACIÓN</span>RULA</h1>                    
+                        {% else %}
+                            {% if metodo_evaluacion == 'REBA' %}
+                                <h1 class="m-0 text-primary"><span class="text-dark">EVALUACIÓN</span>REBA</h1>                                                    
+                            {% endif %}
+                        {% endif %}                        
+                    </a>
+                </div>                
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Packages Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-2 pb-3">                
+                {% if usuario %}
+                    {% for user in usuario %}
+                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">{{ user.nombres }} {{ user.apellidos }}</h6>
+                    {% endfor %}
+                {% else %}
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Video Detección</h6>
+                {% endif %}                
+                <h1>Evalúa posturas ergonómicas</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <div class="d-flex justify-content-center">
+                            <div class="card border-0">
+                                <div class="card-body rounded-bottom bg-white p-5">
+                                    {% if metodo_evaluacion == 'RULA' or metodo_evaluacion == 'REBA' %}
+                                        <h1> ¡RECUERDA! </h1>
+                                        <h3>
+                                            Para poder ver los ángulos y resultados primero debes detener el video
+                                            o esperar que su reproducción finalice.
+                                        </h3>
+                                        <br>
+                                        <br>
+                                        <div class="d-flex justify-content-center">                                                        
+                                            <button id="stop-video-btn" class="btn btn-danger mr-2">Detener Video</button>                                            
+                                            {% if metodo_evaluacion == 'RULA' %}
+                                                <a href="/resultados_rula" id="ver-resultados-btn" class="btn btn-info mr-2" style="display: none;">Resultados RULA</a>        
+                                            {% else %}
+                                                {% if metodo_evaluacion == 'REBA' %}
+                                                    <a href="/resultados_reba" id="ver-resultados-btn" class="btn btn-info mr-2" style="display: none;">Resultados REBA</a>                                                                         
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        <h1> ¡MUY BIEN! </h1>
+                                        <h5 class="m-0">Ergorice es una aplicación web que le permite al usuario evaluar 
+                                            a travez de los métodos de Evaluación Ergonómicos (REBA - RULA) mediante la 
+                                            entrada de video.
+                                        </h5>
+                                        <p class="card-text">
+                                            Realiza la deteccion de todos los puntos visibles detectados en el momento.
+                                        </p>
+                                        <a href="#" class="btn btn-primary">Información Adicional</a>                        
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">                        
+                        <div class="d-flex justify-content-center">
+                            <div class="card border-0">
+                            {% if video_path %}                                
+                                <div id="video-container" class="mb-4">
+                                    <img id="video" src="{{ url_for('video_feed', path=video_path) }}" alt="Video Stream">
+                                </div>                                                                                                           
+                            {% else %}
+                                <div class="card-header bg-primary text-center p-4">
+                                    <h1 class="text-white m-0">EMPIEZA YA!</h1>
+                                </div>                                
+                                <form action="home" method="post" enctype="multipart/form-data">
+                                    <div class="card-body rounded-bottom bg-white p-5">
+                                        <div class="form-group">
+                                            <select id="puesto_trabajo" name="puesto_trabajo" class="custom-select px-4" style="height: 47px;">
+                                                <option value="Selecciona un trabajador" selected>Selecciona un puesto de trabajo</option>
+                                                {% if npuesto %}
+                                                    <option value="{{ npuesto }}" selected>{{ npuesto }}</option>                                                        
+                                                {% endif %}
+                                                {% if puestos_trabajo %}
+                                                    {% for puesto in puestos_trabajo %}                                                        
+                                                        <option value="{{ puesto.npuesto }}">{{ puesto.npuesto }}</option>                                                        
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <option disabled>No se encontraron puestos de trabajo.</option>
+                                                {% endif %}                                                
+                                            </select>
+                                            <div class="input-group-append" title="Consultar puesto de trabajo">
+                                                <a href="/registrar_puesto">Crear
+                                                    <i class="fas fa-briefcase"></i>
+                                                </a>
+                                                <a href="#" id="verificar" style="padding-left: 80px;" onclick="
+                                                    event.preventDefault();
+                                                    var select = document.getElementById('puesto_trabajo');
+                                                    var selectedOption = select.options[select.selectedIndex];
+                                                
+                                                    if (selectedOption.value !== 'Selecciona un trabajador') {
+                                                        var puesto = selectedOption.value;
+                                                        var url = '/puesto_tra?puesto=' + encodeURIComponent(puesto);
+                                                        window.location.href = url;
+                                                    } else {
+                                                        alert('Por favor selecciona un trabajador.');
+                                                    }
+                                                ">Consultar
+                                                    <i class="fas fa-search"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    <div class="form-group">
+                                        <select id="trabajador" name="trabajador" class="custom-select px-4" style="height: 47px;">
+                                            <option value="Selecciona un trabajador" selected>Selecciona un trabajador</option>
+                                            {% if lis_trabajadores %}
+                                                {% for trabajador in lis_trabajadores %}
+                                                    <option value="{{ trabajador.cedula }}" selected>{{ trabajador.nombres }} {{ trabajador.apellidos }}</option>
+                                                {% endfor %}
+                                            {% else %}
+                                                <option disabled>No se encontraron trabajadores asociados a tu cuenta.</option>
+                                            {% endif %}
+                                        </select>
+                                        <div class="input-group-append" title="Registrar trabajador">
+                                            <a href="/registro_trabajador">Registrar
+                                                <i class="fas fa-user-plus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="metodo">Método de Evaluación:</label>
+                                        <select id="metodo" name="metodo" class="custom-select px-4" style="height: 47px;">
+                                            <option value="Seleccione metodo">Seleccione metodo</option>
+                                            <option value="REBA">REBA</option>
+                                            <option value="RULA">RULA</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="file">Seleccionar video:</label>
+                                        <input type="file" class="form-control-file" name="file" id="file" accept=".mp4, .avi, .mov" required>
+                                    </div>                            
+                                        <button type="submit" class="btn btn-primary">Cargar</button>
+                                    </div>                                    
+                                </form>
+                                {% if error %}
+                                    <p class="text-danger mt-3">{{ error }}</p>
+                                {% endif %}
+                            {% endif %}
+                        </div>                                                
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <img class="img-fluid" src="{{ url_for('static', filename='imagenes/info-3.jpg') }}" alt="">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="m-0">Dibuja los ángulos detectados en cada fotograma</h5>
+                            </div>
+                            <h5 class="m-0">Los resultados se generan en cada segundo</h5>
+                            <div class="d-flex justify-content-center">
+                                <a href="/home" id="volver_evaluar"class="btn btn-success mr-2" style="display: none;">Vover a Evaluar</a>                                                                                        
+                            </div>                            
+                        </div>
+                        {% if mensaje %}
+                            <p class="text-danger mt-3">{{ mensaje }}</p>
+                        {% endif %}
+                    </div>
+                </div>                                                
+            </div>
+        </div>
+    </div>
+    <!-- Packages End -->
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-lg-6" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100" src="{{ url_for('static', filename='imagenes/info-1.jpg') }}" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6 pt-5 pb-lg-5">
+                    <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
+                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Sobre ERGORICE</h6>
+                        <h1 class="mb-3">Una Forma Automátizada Para Detectar Posturas</h1>
+                        <p>Selecciona el método de evaluación, sube el video de la persona que deseas evaluar y luego ERGORICE te facilita los resultados automáticamente</p>
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid" src="{{ url_for('static', filename='imagenes/info-2.jpg') }}" alt="">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid" src="{{ url_for('static', filename='imagenes/info-3.jpg') }}" alt="">
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+        <div class="row pt-5">
+            <div class="col-lg-4 col-md-6 mb-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-primary"><span class="text-white">ERGO</span>RICE</h1>
+                </a>
+                <p>Realiza evaluaciones de posturas ergonómicas de forma rápida y sencilla.</p>                
+            </div>            
+            <div class="col-lg-4 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Enlaces rápidos</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="/registro"><i class="fa fa-angle-right mr-2"></i>Registrarse</a>
+                    <a class="text-white-50 mb-2" href="/login"><i class="fa fa-angle-right mr-2"></i>Iniciar sesión</a>
+                    <a class="text-white-50 mb-2" href="/manual"><i class="fa fa-angle-right mr-2"></i>Manual</a>
+                    <a class="text-white-50 mb-2" href="/ejemplos"><i class="fa fa-angle-right mr-2"></i>Ejemplos</a>
+                    <a class="text-white-50 mb-2" href="/info_reba"><i class="fa fa-angle-right mr-2"></i>Reba</a>
+                    <a class="text-white-50 mb-2" href="/info_rula"><i class="fa fa-angle-right mr-2"></i>Rula</a>                    
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contáctanos</h5>                
+                <p><i class="fa fa-phone-alt mr-2"></i>+593 0982028735</p>
+                <p><i class="fa fa-envelope mr-2"></i>ergo-rice@hotmail.com</p>                                
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-12 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white-50">Copyright &copy; <a href="#">ergorice</a>. All Rights Reserved.</a>
+                </p>
+            </div>            
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+           
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
