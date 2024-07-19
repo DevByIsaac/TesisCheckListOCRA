@@ -1,4 +1,3 @@
-
 config = {
   'apiKey': "AIzaSyBDzmaXXy5zFbuHWGnYR4nlufWIQ84W5oo",
   'authDomain': "app-detecciones.firebaseapp.com",

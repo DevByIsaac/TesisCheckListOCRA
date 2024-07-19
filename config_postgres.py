@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhost/dbname'
@@ -53,3 +54,8 @@ class Reporte(db.Model):
     analisis_id = db.Column(db.Integer, db.ForeignKey('analisis.id'), nullable=False)
     ruta = db.Column(db.String(200), nullable=False)
     fecha_generacion = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+VIDEO_DIR = 'C:\\Tesis\\TestErgo\\muestra'
+OUTPUT_FOLDER = 'C:\\Tesis\\TestErgo\\resultados'
+OUTPUT_VIDEO_FOLDER = 'C:\\Tesis\\TestErgo\\videoMarcado'
+JSON_FOLDER = 'C:\\Tesis\\TestErgo\\archivos_json'
