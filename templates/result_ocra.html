@@ -1,0 +1,180 @@
+<!-- result_ocra.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERGOTECH - Resultado OCRA</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Otros estilos si es necesario -->
+    <!-- LOGO -->
+    <link href="{{ url_for('static', filename='imagenes/logo.png') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-light">
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <p><i class="fa fa-envelope mr-2"></i>ergo-rice@hotmail.com</p>
+                        <p class="text-body px-3">|</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>+593 0982028735</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center text-lg-right">
+                    <div class="d-inline-flex align-items-center">                        
+                        <a id="salir" class="text-primary pl-3" href="cerrar_sesion">Cerrar Sesión
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->    
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <img src="{{ url_for('static', filename='imagenes/logo.png') }}" width="90" height="90">
+                <a href="" class="navbar-brand">
+                    <h1 class="m-0 text-primary"><span class="text-dark">ERGO</span>RICE</h1>
+                </a>                                                
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->    
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Resultados OCRA Start -->
+                <div class="bg-white p-4">
+                    <h1 class="text-primary mb-4">Resultados del Análisis OCRA</h1>
+
+                    <!-- Resumen del Análisis -->
+                    <div class="mb-4">
+                        <h2 class="text-secondary">Resumen</h2>
+                        <p>Se realizó un análisis ergonómico utilizando el método OCRA para evaluar las tareas realizadas. A continuación, se presentan los resultados de los factores evaluados:</p>
+                    </div>
+
+                    <!-- Factores OCRA -->
+                    <div class="mb-4">
+                        <h2 class="text-secondary">Factores Calculados</h2>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Factor</th>
+                                    <th>Valor</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Factor de Recuperación (FR)</td>
+                                    <td>{{ fr_value }}</td>
+                                    <td>{{ fr_description }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Factor de Frecuencia (FF)</td>
+                                    <td>{{ ff_value }}</td>
+                                    <td>{{ ff_description }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Factor de Fuerza (FFz)</td>
+                                    <td>{{ ffz_value }}</td>
+                                    <td>{{ ffz_description }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Factor de Posturas y Movimientos (FP)</td>
+                                    <td>{{ fp_value }}</td>
+                                    <td>{{ fp_description }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Factor de Riesgos Adicionales (FC)</td>
+                                    <td>{{ fc_value }}</td>
+                                    <td>{{ fc_description }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Multiplicador de Duración (MD)</td>
+                                    <td>{{ md_value }}</td>
+                                    <td>{{ md_description }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Evaluación General -->
+                    <div class="mb-4">
+                        <h2 class="text-secondary">Evaluación General</h2>
+                        <p>En base a los factores calculados, la evaluación general de la tarea es:</p>
+                        <p class="alert alert-{{ evaluation_class }}">{{ evaluation_message }}</p>
+                    </div>
+
+                    <!-- Recomendaciones -->
+                    <div class="mb-4">
+                        <h2 class="text-secondary">Recomendaciones</h2>
+                        <p>{{ recommendations }}</p>
+                    </div>
+                </div>
+                <!-- Resultados OCRA End -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5">
+        <div class="row pt-5">
+            <div class="col-lg-4 col-md-6 mb-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-primary"><span class="text-white">ERGO</span>RICE</h1>
+                </a>
+                <p>Realiza evaluaciones de posturas ergonómicas de forma rápida y sencilla.</p>                
+            </div>            
+            <div class="col-lg-4 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Enlaces rápidos</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="/registro"><i class="fa fa-angle-right mr-2"></i>Registrarse</a>
+                    <a class="text-white-50 mb-2" href="/login"><i class="fa fa-angle-right mr-2"></i>Iniciar sesión</a>
+                    <a class="text-white-50 mb-2" href="/manual"><i class="fa fa-angle-right mr-2"></i>Manual</a>
+                    <a class="text-white-50 mb-2" href="/ejemplos"><i class="fa fa-angle-right mr-2"></i>Ejemplos</a>
+                    <a class="text-white-50 mb-2" href="/info_reba"><i class="fa fa-angle-right mr-2"></i>Reba</a>
+                    <a class="text-white-50 mb-2" href="/info_rula"><i class="fa fa-angle-right mr-2"></i>Rula</a>                    
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contáctanos</h5>                
+                <p><i class="fa fa-phone-alt mr-2"></i>+593 0982028735</p>
+                <p><i class="fa fa-envelope mr-2"></i>ergo-rice@hotmail.com</p>                                
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-12 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white-50">Copyright &copy; <a class="text-primary" href="#">ERGO-RICE</a>. Todos los derechos reservados.</p>
+            </div>            
+        </div>
+    </div>
+    <!-- Footer End -->
+
+</body>
+</html>
