@@ -1,3 +1,5 @@
+import json
+
 def calcular_multiplicador_duracion(duracion_exposicion_minutos):
     """
     Calcula el Multiplicador de Duración (MD) basado en la duración de exposición a la tarea.
