@@ -5,43 +5,51 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
  :root {
-    --blue: #007bff;
-    --indigo: #6610f2;
-    --purple: #6f42c1;
-    --pink: #e83e8c;
-    --red: #dc3545;
-    --orange: #fd7e14;
-    --yellow: #ffc107;
-    --green: #28a745;
-    --teal: #20c997;
-    --cyan: #17a2b8;
-    --white: #fff;
-    --gray: #6c757d;
-    --gray-dark: #343a40;
-    --primary: #7AB730;
-    --secondary: #f4faec;
-    --success: #28a745;
-    --info: #17a2b8;
-    --warning: #ffc107;
-    --danger: #dc3545;
-    --light: #FFFFFF;
-    --dark: #212121;
-    --breakpoint-xs: 0;
-    --breakpoint-sm: 576px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 992px;
-    --breakpoint-xl: 1200px;
-    --font-family-sans-serif: "Poppins", sans-serif;
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
+  --primary: #EDB72F; /* Color principal (naranja) */
+  --secondary: #EBE9F1; /* Color secundario (gris claro) */
+  --tertiary: #4C47EA; /* Color terciario (lila) */
+  --quaternary: #9A99CA; /* Color cuaternario (lila claro) */
+  --quinary: #D6D2E0; /* Color quinario (gris muy claro) */
   
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
+  /* Colores predeterminados */
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14; /* Color naranja (suplente) */
+  --yellow: #ffc107;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
   
+  /* Colores para estados */
+  --success: #fd7e14; /* Color verde (suplente, eliminar si no se usa) */
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  
+  /* Colores adicionales */
+  --light: #FFFFFF;
+  --dark: #212121;
+  
+  /* Breakpoints */
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  
+  /* Fuentes */
+  --font-family-sans-serif: "Poppins", sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
   html {
     font-family: sans-serif;
     line-height: 1.15;
@@ -70,7 +78,7 @@
 }
 
 th {
-    background-color: hsl(160, 74%, 51%);
+    background-color: #fd7e14;
 }
 
 .img-cell {
@@ -9285,11 +9293,11 @@ th {
   }
   
   .text-primary {
-    color: #7AB730 !important;
+    color: #fd7e14 !important;
   }
   
   a.text-primary:hover, a.text-primary:focus {
-    color: #527a20 !important;
+    color: #fd7e14 !important;
   }
   
   .text-secondary {
