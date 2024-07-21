@@ -225,7 +225,7 @@ def add_header(response):
 def cerrar_sesion():
     if 'user' in session:
         session.pop('user')
-    return redirect(url_for('index'))
+    return redirect(url_for('index2'))
 #----------------------------------------------------------------------RUTA PRINCIPAL-----------------
 @app.route('/')
 def index():
@@ -250,6 +250,10 @@ def info_reba():
 @app.route('/info_rula')
 def info_rula():
     return render_template("info_rula.html")
+#----------------------------------------------------------------------RUTA INFORMACION OCRA-----------------
+@app.route('/info_ocra')
+def info_ocra():
+    return render_template("info_ocra.html")    
 #----------------------------------------------------------------------RUTA REGISTRAR TRABAJADOR-----------------
 @app.route('/registro_trabajador')
 @requiere_user

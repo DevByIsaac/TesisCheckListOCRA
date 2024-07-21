@@ -1,214 +1,83 @@
-<!-- manual.html -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERGORICE - Manual Usuario</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Otros estilos si es necesario -->
-    <!-- LOGO -->
-    <link href="{{ url_for('static', filename='imagenes/logo.png') }}" rel="icon">
+{% extends "base.html" %}
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <script src="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></script> 
+{% block title %}ERGORICE - Manual Usuario{% endblock %}
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='js/scripts.js') }}">
-</head>
-<body class="bg-light">
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>ergo-rice@hotmail.com</p>
-                        <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>+593 0982028735</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="text-primary pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-    <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <img src="{{ url_for('static', filename='imagenes/logo.png') }}" width="90" height="90">
-                <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-primary"><span class="text-dark">ERGO</span>RICE</h1>
-                </a>                
-                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="/" class="nav-item nav-link active">Home</a>
-                        <a href="manual" class="nav-item nav-link">Manual</a>
-                        <a href="ejemplos" class="nav-item nav-link">Ejemplos</a>                    
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Métodos de Evaluación</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="info_reba" class="dropdown-item">REBA</a>
-                                <a href="info_rula" class="dropdown-item">RULA</a>
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-    <!-- Navbar End -->
-    <!-- Blog Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-8">
-                    <!-- Blog Detail Start -->
-                    <div class="pb-3">
-                        <div class="blog-item">
-                            <div class="position-relative">
-                                <img class="img-fluid w-100" src="{{ url_for('static', filename='imagenes/manual1.jpg') }}" alt="">                                
-                            </div>
-                        </div>
-                        <div class="bg-white mb-3" style="padding: 20px;">
-                            <div class="d-flex mb-3">                                
-                                <a class="text-primary text-uppercase text-decoration-none" href="">Manual para el usuario</a>
-                            </div>
-                            <h2 class="mb-3">Propósito de la aplicación</h2>
-                            <p>ERGORICE tiene como propósito brindar al usuario resultados basados en la evaluación ergonómica 
-                                (metodos evaluativos REBA y RULA) realizada al video seleccionado mediante detección de los
-                                puntos claves del cuerpo humano.
-                            </p>                           
-                            <h4 class="mb-3">Registrar información a evaluar</h4>
-                            
-                            <p>- Después de iniciar sesión, se le presentarán las opciónes de elegir el puesto de trabajo y 
-                                el trabajador, y el video a ser evaluado, si entre las opciones de puesto de trabajo o trabajador no se encuentran
-                                los que el usuario desea evaluar, podrá registrar al trabajador o crear el puesto de trabajo, también debe elegir 
-                                entre los métodos de evaluación RULA y REBA. 
-                                Seleccione el método deseado haciendo clic en el botón correspondiente.                                
-                            </p>
-                            <h5 class="mb-3">Procesamiento del video</h5>
-                            <img class="img-fluid w-50 float-left ml-4 mb-2" src="{{ url_for('static', filename='imagenes/manual2.jpg') }}">
-                            <p>En este caso, el usuario puede detener el video para poder finalizador con el procesamiento del video o simplemente
-                                puede dejar que finalice la reproducción del video, tambien tiene las opciones de ver los angulos detectados, y la opcion
-                                de ver los resultados.
-                            </p>
-                            <h5 class="mb-3">Visualización de los resultados</h5>
-                            <img class="img-fluid w-50 float-right ml-4 mb-2" src="{{ url_for('static', filename='imagenes/manual3.jpg') }}">
-                            <p>Finalmente el usuario puede observar los resultados realizados junto con el fotograma en cada segundo, 
-                                con la finalidad de que puedan modificar, guardar y actualizar las columnas que almacenan las puntuaciones. Por 
-                                último el usuario puede descargar los resultados en un archivo excel o pdf.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Blog Detail End -->                    
-                </div>
-    
-                <div class="col-lg-4 mt-5 mt-lg-0">
-                    <!-- Author Bio -->
-                    <div class="d-flex flex-column text-center bg-white mb-5 py-5 px-4">
-                        <h3 class="text-primary mb-3">Registros</h3>
-                        <img src="{{ url_for('static', filename='imagenes/manual4.jpg') }}" class="img-fluid mx-auto mb-3">                                                
-                        <p>Al dar clic en los iconos debajo de cada campo se puede agregar un nuevo puesto de trabajo asi como tambien un nuevo trabajador</p>
-                        <img src="{{ url_for('static', filename='imagenes/manual5.jpg') }}" class="img-fluid mx-auto mb-3">
-                    </div>                   
-
-                    <!-- Category List -->
-                    <div class="mb-5">
-                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Puestos de trabajo</h4>
-                        <div class="bg-white" style="padding: 30px;">
-                            <ul class="list-inline m-0">
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Cultivador</a>                                    
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Cosechador</a>                                    
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Fumigador</a>                                    
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Recolector</a>                                    
-                                </li>                                
-                            </ul>
-                        </div>
-                    </div>                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Blog End -->
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
-        <div class="row pt-5">
-            <div class="col-lg-4 col-md-6 mb-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">ERGO</span>RICE</h1>
-                </a>
-                <p>Realiza evaluaciones de posturas ergonómicas de forma rápida y sencilla.</p>                
-            </div>            
-            <div class="col-lg-4 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Enlaces rápidos</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="/registro"><i class="fa fa-angle-right mr-2"></i>Registrarse</a>
-                    <a class="text-white-50 mb-2" href="/login"><i class="fa fa-angle-right mr-2"></i>Iniciar sesión</a>
-                    <a class="text-white-50 mb-2" href="/manual"><i class="fa fa-angle-right mr-2"></i>Manual</a>
-                    <a class="text-white-50 mb-2" href="/ejemplos"><i class="fa fa-angle-right mr-2"></i>Ejemplos</a>
-                    <a class="text-white-50 mb-2" href="/info_reba"><i class="fa fa-angle-right mr-2"></i>Reba</a>
-                    <a class="text-white-50 mb-2" href="/info_rula"><i class="fa fa-angle-right mr-2"></i>Rula</a>                    
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contáctanos</h5>                
-                <p><i class="fa fa-phone-alt mr-2"></i>+593 0982028735</p>
-                <p><i class="fa fa-envelope mr-2"></i>ergo-rice@hotmail.com</p>                                
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+{% block content %}
+<div class="container-fluid py-5">
+    <div class="container py-5">
         <div class="row">
-            <div class="col-lg-12 text-center text-md-left mb-3 mb-md-0">
-                <p class="m-0 text-white-50">Copyright &copy; <a href="#">ergorice</a>. All Rights Reserved.</a>
-                </p>
-            </div>            
+            <div class="col-lg-8">
+                <!-- Blog Detail Start -->
+                <div class="pb-3">
+                    <div class="blog-item">
+                        <div class="position-relative">
+                            <img class="img-fluid w-100" src="{{ url_for('static', filename='imagenes/manual1.jpg') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="bg-white mb-3" style="padding: 20px;">
+                        <div class="d-flex mb-3">
+                            <a class="text-primary text-uppercase text-decoration-none" href="">Manual para el usuario</a>
+                        </div>
+                        <h2 class="mb-3">Propósito de la aplicación</h2>
+                        <p>ERGORICE tiene como propósito brindar al usuario resultados basados en la evaluación ergonómica 
+                            (metodos evaluativos REBA y RULA) realizada al video seleccionado mediante detección de los
+                            puntos claves del cuerpo humano.
+                        </p>
+                        <h4 class="mb-3">Registrar información a evaluar</h4>
+                        <p>- Después de iniciar sesión, se le presentarán las opciónes de elegir el puesto de trabajo y 
+                            el trabajador, y el video a ser evaluado, si entre las opciones de puesto de trabajo o trabajador no se encuentran
+                            los que el usuario desea evaluar, podrá registrar al trabajador o crear el puesto de trabajo, también debe elegir 
+                            entre los métodos de evaluación RULA y REBA. 
+                            Seleccione el método deseado haciendo clic en el botón correspondiente.
+                        </p>
+                        <h5 class="mb-3">Procesamiento del video</h5>
+                        <img class="img-fluid w-50 float-left ml-4 mb-2" src="{{ url_for('static', filename='imagenes/manual2.jpg') }}">
+                        <p>En este caso, el usuario puede detener el video para poder finalizador con el procesamiento del video o simplemente
+                            puede dejar que finalice la reproducción del video, tambien tiene las opciones de ver los angulos detectados, y la opcion
+                            de ver los resultados.
+                        </p>
+                        <h5 class="mb-3">Visualización de los resultados</h5>
+                        <img class="img-fluid w-50 float-right ml-4 mb-2" src="{{ url_for('static', filename='imagenes/manual3.jpg') }}">
+                        <p>Finalmente el usuario puede observar los resultados realizados junto con el fotograma en cada segundo, 
+                            con la finalidad de que puedan modificar, guardar y actualizar las columnas que almacenan las puntuaciones. Por 
+                            último el usuario puede descargar los resultados en un archivo excel o pdf.
+                        </p>
+                    </div>
+                </div>
+                <!-- Blog Detail End -->
+            </div>
+
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                <!-- Author Bio -->
+                <div class="d-flex flex-column text-center bg-white mb-5 py-5 px-4">
+                    <h3 class="text-primary mb-3">Registros</h3>
+                    <img src="{{ url_for('static', filename='imagenes/manual4.jpg') }}" class="img-fluid mx-auto mb-3">
+                    <p>Al dar clic en los iconos debajo de cada campo se puede agregar un nuevo puesto de trabajo asi como tambien un nuevo trabajador</p>
+                    <img src="{{ url_for('static', filename='imagenes/manual5.jpg') }}" class="img-fluid mx-auto mb-3">
+                </div>
+
+                <!-- Category List -->
+                <div class="mb-5">
+                    <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Puestos de trabajo</h4>
+                    <div class="bg-white" style="padding: 30px;">
+                        <ul class="list-inline m-0">
+                            <li class="mb-3 d-flex justify-content-between align-items-center">
+                                <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Cultivador</a>
+                            </li>
+                            <li class="mb-3 d-flex justify-content-between align-items-center">
+                                <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Cosechador</a>
+                            </li>
+                            <li class="mb-3 d-flex justify-content-between align-items-center">
+                                <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Fumigador</a>
+                            </li>
+                            <li class="mb-3 d-flex justify-content-between align-items-center">
+                                <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Recolector</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-</body>
+</div>
+{% endblock %}

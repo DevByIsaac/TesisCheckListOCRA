@@ -1,238 +1,112 @@
 <!-- ejemplos.html -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERGORICE - Ejemplos</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Otros estilos si es necesario -->
-    <!-- LOGO -->
-    <link href="{{ url_for('static', filename='imagenes/logo.png') }}" rel="icon">
+{% extends "base.html" %}
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <script src="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></script> 
+{% block title %}ERGORICE - Ejemplos{% endblock %}
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='js/scripts.js') }}">
-</head>
-<body class="bg-light">
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>ergo-rice@hotmail.com</p>
-                        <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>+593 0982028735</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="text-primary pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
+{% block content %}
+<!-- About Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5">
+        <div class="pb-3">                        
+            <div class="bg-white mb-3" style="padding: 30px;">
+                <h2 class="mb-3">Agrega nuevos datos e información</h2>
             </div>
         </div>
-    </div>
-    <!-- Topbar End -->
-
-    <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <img src="{{ url_for('static', filename='imagenes/logo.png') }}" width="90" height="90">
-                <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-primary"><span class="text-dark">ERGO</span>RICE</h1>
-                </a>                
-                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="/" class="nav-item nav-link active">Home</a>
-                        <a href="manual" class="nav-item nav-link">Manual</a>
-                        <a href="ejemplos" class="nav-item nav-link">Ejemplos</a>                    
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Métodos de Evaluación</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="info_reba" class="dropdown-item">REBA</a>
-                                <a href="info_rula" class="dropdown-item">RULA</a>
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-    <!-- Navbar End -->
-
-    <!-- About Start -->
-    <div class="container-fluid py-5">
-        <div class="container pt-5">
-            <div class="pb-3">                        
-                <div class="bg-white mb-3" style="padding: 30px;">
-                    <h2 class="mb-3">Agrega nuevos datos e información</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="{{ url_for('static', filename='imagenes/ejemplo00.png') }}" style="object-fit: cover;">
-                    </div>
-                </div>
-                <div class="col-lg-6 pt-5 pb-lg-5">
-                    <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
-                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Ejemplo 1</h6>
-                        <h1 class="mb-3">Crea y registra</h1>
-                        <p>Al momento de seleccionar el puesto de trabajo o al trabajador, puedes crear un nuevo registro si no encuentras el que deseas</p>
-                        <div class="row mb-4">
-                            <div class="col-6">
-                                <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo0.png') }}" alt="">
-                            </div>
-                            <div class="col-6">
-                                <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo01.png') }}" alt="">
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
-    
-    <!-- About Start -->
-    <div class="container-fluid py-5">
-        <div class="container pt-5">
-            <div class="pb-3">                        
-                <div class="bg-white mb-3" style="padding: 30px;">
-                    <h2 class="mb-3">Elige y llena el formulario</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="{{ url_for('static', filename='imagenes/ejemplo1.png') }}" style="object-fit: cover;">
-                    </div>
-                </div>
-                <div class="col-lg-6 pt-5 pb-lg-5">
-                    <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
-                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Ejemplo 2</h6>
-                        <h1 class="mb-3">La información y datos que desees estará a tu disposición</h1>
-                        <p>En el momento que tengas registrado el trabajador o creado el puesto de trabajo con el que deseas realizar la evaluación 
-                            puedes proceder a Cargar el formulario. Para posteriormente obtener los archivos que contienen con dicha evaluación.
-                        </p>
-                        <div class="row mb-4">
-                            <div class="col-6">
-                                <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo12.png') }}" alt="">
-                            </div>
-                            <div class="col-6">
-                                <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo13.png') }}" alt="">
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
-    <!-- About Start -->
-    <div class="container-fluid py-5">
-        <div class="container pt-5">
-            <div class="pb-3">                        
-                <div class="bg-white mb-3" style="padding: 30px;">
-                    <h2 class="mb-3">Observa los resultados</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="{{ url_for('static', filename='imagenes/ejemplo2.png') }}" style="object-fit: cover;">
-                    </div>
-                </div>
-                <div class="col-lg-6 pt-5 pb-lg-5">
-                    <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
-                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Ejemplo 3</h6>
-                        <h1 class="mb-3">Toda la información está a tu alcance</h1>
-                        <p>Luego de haber cargado el respectivo formulario, automáticamente podrás observar los resultados si lo deseas. 
-                            También podrás modificar las puntuaciones según las condiciones del método.
-                        </p>
-                        <div class="row mb-4">
-                            <div class="col-6">
-                                <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo21.png') }}" alt="">
-                            </div>
-                            <div class="col-6">
-                                <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo22.png') }}" alt="">
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
-        <div class="row pt-5">
-            <div class="col-lg-4 col-md-6 mb-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">ERGO</span>RICE</h1>
-                </a>
-                <p>Realiza evaluaciones de posturas ergonómicas de forma rápida y sencilla.</p>                
-            </div>            
-            <div class="col-lg-4 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Enlaces rápidos</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="/registro"><i class="fa fa-angle-right mr-2"></i>Registrarse</a>
-                    <a class="text-white-50 mb-2" href="/login"><i class="fa fa-angle-right mr-2"></i>Iniciar sesión</a>
-                    <a class="text-white-50 mb-2" href="/manual"><i class="fa fa-angle-right mr-2"></i>Manual</a>
-                    <a class="text-white-50 mb-2" href="/ejemplos"><i class="fa fa-angle-right mr-2"></i>Ejemplos</a>
-                    <a class="text-white-50 mb-2" href="/info_reba"><i class="fa fa-angle-right mr-2"></i>Reba</a>
-                    <a class="text-white-50 mb-2" href="/info_rula"><i class="fa fa-angle-right mr-2"></i>Rula</a>                    
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contáctanos</h5>                
-                <p><i class="fa fa-phone-alt mr-2"></i>+593 0982028735</p>
-                <p><i class="fa fa-envelope mr-2"></i>ergo-rice@hotmail.com</p>                                
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
-            <div class="col-lg-12 text-center text-md-left mb-3 mb-md-0">
-                <p class="m-0 text-white-50">Copyright &copy; <a href="#">ergorice</a>. All Rights Reserved.</a>
-                </p>
-            </div>            
+            <div class="col-lg-6" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100" src="{{ url_for('static', filename='imagenes/ejemplo00.png') }}" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Ejemplo 1</h6>
+                    <h1 class="mb-3">Crea y registra</h1>
+                    <p>Al momento de seleccionar el puesto de trabajo o al trabajador, puedes crear un nuevo registro si no encuentras el que deseas</p>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo0.png') }}" alt="">
+                        </div>
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo01.png') }}" alt="">
+                        </div>
+                    </div>                        
+                </div>
+            </div>
         </div>
     </div>
-    <!-- Footer End -->
+</div>
+<!-- About End -->
 
+<!-- About Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5">
+        <div class="pb-3">                        
+            <div class="bg-white mb-3" style="padding: 30px;">
+                <h2 class="mb-3">Elige y llena el formulario</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100" src="{{ url_for('static', filename='imagenes/ejemplo1.png') }}" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Ejemplo 2</h6>
+                    <h1 class="mb-3">La información y datos que desees estará a tu disposición</h1>
+                    <p>En el momento que tengas registrado el trabajador o creado el puesto de trabajo con el que deseas realizar la evaluación 
+                        puedes proceder a Cargar el formulario. Para posteriormente obtener los archivos que contienen con dicha evaluación.
+                    </p>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo12.png') }}" alt="">
+                        </div>
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo13.png') }}" alt="">
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-</body>
+<!-- About Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5">
+        <div class="pb-3">                        
+            <div class="bg-white mb-3" style="padding: 30px;">
+                <h2 class="mb-3">Observa los resultados</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100" src="{{ url_for('static', filename='imagenes/ejemplo2.jpeg') }}" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Ejemplo 3</h6>
+                    <h1 class="mb-3">Toda la información está a tu alcance</h1>
+                    <p>Luego de haber cargado el respectivo formulario, automáticamente podrás observar los resultados si lo deseas. 
+                        También podrás modificar las puntuaciones según las condiciones del método.
+                    </p>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo21.png') }}" alt="">
+                        </div>
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo22.png') }}" alt="">
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+{% endblock %}
