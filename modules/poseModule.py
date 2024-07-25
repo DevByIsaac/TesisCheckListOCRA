@@ -80,4 +80,3 @@ class pose_detector():
                     return None
                 return None
         return None
-
