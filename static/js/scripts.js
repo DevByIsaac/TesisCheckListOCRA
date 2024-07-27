@@ -70,3 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })(jQuery);
                     
 });
+
+function showAlert() {
+    alert("Es posible que este video no sea de una persona haciendo trabajo repetitivo.");
+}

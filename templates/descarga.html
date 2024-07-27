@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar Archivos</title>
+</head>
+<body>
+    <h1>Descargar Archivos</h1>
+    <form action="/download" method="get">
+        <label for="video">Selecciona el video:</label>
+        <select id="video" name="video">
+            <!-- Aquí debes listar los videos disponibles para descarga -->
+            {% for video in videos %}
+                <option value="{{ video }}">{{ video }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Descargar Archivos</button>
+    </form>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+        <p style="color: green;">{{ success }}</p>
+    {% endif %}
+</body>
+</html>

@@ -21,6 +21,35 @@ from firebase_admin import credentials, db, storage, auth
 from config_firebase import config
 import pyrebase
 import firebase_admin 
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+import psycopg2
+from psycopg2 import sql
+from database import get_db_connection, close_db_connection
+
+#auth = Blueprint('auth', __name__)
+#--------------------------------------------------------------------------------CONEXION A LA BASE DE DATOS POSGREST--------------------
+
+""" from flask import Flask
+from .database import get_db_connection, close_db_connection
+
+app = Flask(__name__)
+app.config.from_object('config_postgres.Config')
+
+# Asegúrate de cerrar la conexión al final de cada solicitud
+@app.teardown_appcontext
+def teardown_appcontext(exception):
+    
+    close_db_connection()
+
+# Importa y registra los Blueprints
+from routes.auth import auth  # Asumiendo que has creado un archivo auth.py
+app.register_blueprint(auth) """
+
+# Resto de tu configuración y rutas
+#--------------------------------------------------------------------------------FIN CONEXION A LA BASE DE DATOS POSGREST--------------------
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 app = Flask(__name__)
 app.secret_key = 'Landacay05'
@@ -268,6 +297,81 @@ def registrar_puesto():
 @app.route('/registro')
 def registro():
     return render_template("registro.html")
+#----------------------------------------------------------------------DESCARGAR VIDEO--------------------------------------------------------------------
+@app.route('/subir_video', methods=['GET', 'POST'])
+def subir_video():
+    return render_template("subir_video.html")
+#----------------------------------------------------------------------RUTA ANALISIS DE VIDEO--------------------------------------------------------------------
+@app.route('/analyze_video', methods=['POST'])
+def analyze_video():
+    video_file = request.files['video']
+    video_path = os.path.join('videos', video_file.filename)
+    video_file.save(video_path)
+
+    output_folder = 'output_frames'
+    output_video_folder = 'output_videos'
+    json_folder = 'json_results'
+
+    draw_keypoints_and_angles(video_path, output_folder, output_video_folder, json_folder)
+
+    return jsonify({"message": "Video analizado con éxito!"})
+
+@app.route('/output_videos/<path:filename>')
+def download_output_video(filename):
+    return send_from_directory('output_videos', filename)
+
+@app.route('/json_results/<path:filename>')
+def download_json_result(filename):
+    return send_from_directory('json_results', filename)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+#----------------------------------------------------------------------SUBIR VIDEO--------------------------------------------------------------------
+
+bp = Blueprint('main', __name__)
+
+@bp.route('/')
+def index():
+    return render_template('upload.html')
+
+@bp.route('/upload', methods=['POST'])
+def upload_file():
+    if 'video' not in request.files:
+        return render_template('upload.html', error='No se seleccionó ningún archivo.')
+
+    file = request.files['video']
+    if file.filename == '':
+        return render_template('upload.html', error='No se seleccionó ningún archivo.')
+
+    if file and file.filename.endswith('.mp4'):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join('uploads', filename))
+        return render_template('upload.html', success='Video subido exitosamente.')
+
+    return render_template('upload.html', error='Solo se permiten archivos MP4.')
+#----------------------------------------------------------------------DESCARGAR VIDEO--------------------------------------------------------------------
+
+@bp.route('/download')
+def download_file():
+    video = request.args.get('video')
+    if not video:
+        return render_template('download.html', error='No se seleccionó ningún video.')
+
+    # Verifica si el video y los archivos JSON y Excel existen
+    video_path = os.path.join('uploads', video)
+    json_path = os.path.join('static/resultados', video.replace('.mp4', '_data.json'))
+    excel_path = os.path.join('static/resultados', video.replace('.mp4', '_results.xlsx'))
+
+    if not os.path.isfile(video_path) and not os.path.isfile(json_path) and not os.path.isfile(excel_path):
+        return render_template('download.html', error='El archivo no existe.')
+
+    # Envía los archivos como una descarga en lugar de enviar un solo archivo.
+    return render_template('download.html', success='Archivos disponibles para descargar.')
+#----------------------------------------------------------------------DESCARGAR ARCHIVOS JSON--------------------------------------------------------------------
+
+@bp.route('/download/<filename>')
+def download(filename):
+    return send_from_directory('static/resultados', filename, as_attachment=True)
 
 #--------------------------------------------------------------------------------RUTA BTN DETENER VIDEO-----------------
 @app.route('/stop_video_processing', methods=['GET', 'POST'])
@@ -277,7 +381,7 @@ def stop_video_processing():
     # Devuelve una respuesta exitosa al cliente
     return jsonify({'success': True})
 #----------------------------------------------------------------------RUTA VALIDAR LOGIN-----------------
-@app.route('/validar_login', methods=['POST', 'GET'])
+""" @app.route('/validar_login', methods=['POST', 'GET'])
 def validar_login():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -302,10 +406,37 @@ def validar_login():
             flash('Datos erroneos. Verifica la información e intentalo de nuevo.', 'error')
             return redirect(url_for('login'))
 
+    return render_template('login.html') """
+
+@app.route('/login_validator', methods=['GET', 'POST'])
+def login_validator():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        conn = get_db_connection()
+        cur = conn.cursor()
+
+        try:
+            # Ejecutar el procedimiento almacenado
+            cur.callproc('public.authenticate_user', [email, password])
+            result = cur.fetchone()
+            cur.close()
+            conn.close()
+
+            # Procesar el resultado del procedimiento almacenado
+            if result and result[0] == 'success':  # Cambia esto según el resultado esperado
+                return redirect(url_for('index'))
+            else:
+                flash('Correo o contraseña incorrectos.', 'danger')
+        except Exception as e:
+            flash(f'Ocurrió un error: {str(e)}', 'danger')
+            conn.rollback()
+
     return render_template('login.html')
 
 #----------------------------------------------------------------------RUTA REGISTRO USUARIO-----------------
-@app.route('/registrar_usuario', methods=['GET', 'POST'])
+""" @app.route('/registrar_usuario', methods=['GET', 'POST'])
 def registrar_usuario():
     if request.method == 'POST':
         email = request.form['email']
@@ -363,8 +494,32 @@ def registrar_usuario():
             flash('Error al registrar usuario. Verifica la información e intentalo de nuevo.', 'error')
             return redirect(url_for('registro'))
 
-    return render_template('registro.html')
+    return render_template('registro.html') """
+@app.route('/registro_validator', methods=['GET', 'POST'])
+def registro_validator():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        created_by = 'admin'  # Ajusta esto según sea necesario
+        updated_by = 'admin'  # Ajusta esto según sea necesario
 
+        conn = get_db_connection()
+        cur = conn.cursor()
+        try:
+            cur.callproc('public.create_user', [username, email, password, created_by, updated_by])
+            conn.commit()
+            flash('Usuario registrado con éxito.', 'success')
+        except Exception as e:
+            conn.rollback()
+            flash(f'Error al registrar el usuario: {e}', 'danger')
+        finally:
+            cur.close()
+            conn.close()
+
+        return redirect(url_for('auth.login'))
+
+    return render_template('registro.html')
 #----------------------------------------------------------------------RUTA REGISTRO PUESTO DE TRABAJO-----------------
 @app.route('/registrar_puesto_trabajo', methods=['GET', 'POST'])
 @requiere_user

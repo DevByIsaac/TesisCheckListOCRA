@@ -1,6 +1,7 @@
-import os
-
 class Config:
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:12345@localhost/tesis-checklist-ocra'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'lonuestroesunsecreto'
+    DB_NAME = 'tesis-checklist-ocra'
+    DB_USER = 'postgres'
+    DB_PASSWORD = '12345'
+    DB_HOST = 'localhost'
+    DB_PORT = '5000'
+    # otras configuraciones

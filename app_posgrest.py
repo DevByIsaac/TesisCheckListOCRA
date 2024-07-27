@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+""" from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
 from psycopg2 import sql
 
@@ -44,6 +44,28 @@ def add_user():
     cur.close()
     conn.close()
     return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+ """
+from flask import Flask
+from .database import get_db_connection, close_db_connection
+
+app = Flask(__name__)
+app.config.from_object('config_postgres.Config')
+
+# Asegúrate de cerrar la conexión al final de cada solicitud
+@app.teardown_appcontext
+def teardown_appcontext(exception):
+    
+    close_db_connection()
+
+# Importa y registra los Blueprints
+from routes.auth import auth  # Asumiendo que has creado un archivo auth.py
+app.register_blueprint(auth)
+
+# Resto de tu configuración y rutas
 
 if __name__ == '__main__':
     app.run(debug=True)

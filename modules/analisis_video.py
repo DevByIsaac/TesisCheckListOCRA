@@ -1,15 +1,81 @@
 import cv2
 import numpy as np
+import pandas as pd
 import mediapipe as mp
 import os
 import datetime
 import json
-from config_postgres import OUTPUT_FOLDER, OUTPUT_VIDEO_FOLDER, JSON_FOLDER
-from utils import load_videos, extract_frames, calculate_angle
 
-# Inicializar MediaPipe para detección de puntos clave
+video_dir = 'C:\\Tesis\\TestErgo\\muestra'
+
+def load_videos(video_dir):
+    videos = []
+    for filename in os.listdir(video_dir):
+        if filename.endswith(".mp4"):
+            videos.append(os.path.join(video_dir, filename))
+    return videos
+#----------------------------------------VALIDACION PARA SABER SI EL VIDEO ES DE UNA PERSONA CON HAAR CASCADES---------------------------------------
+def detect_person(video_path):
+    # Cargar el clasificador de cascada para la detección de personas
+    person_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fullbody.xml')
+
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise ValueError(f"No se puede abrir el video: {video_path}")
+
+    detected_person = False
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        bodies = person_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+        
+        if len(bodies) > 0:
+            detected_person = True
+            break
+
+    cap.release()
+    return detected_person
+
+def process_video(video_path):
+    if not detect_person(video_path):
+        # Aquí se levantaría la alerta
+        print("Es posible que este video no sea de una persona haciendo trabajo repetitivo.")
+        # Opcionalmente, puedes evitar que el video se procese y salir de la función
+        return
+#----------------------------------------------------------------------EXTRAER FRAMES--------------------------------------------------------------------
+def extract_frames(video_path, interval=30):
+    cap = cv2.VideoCapture(video_path)
+    frames = []
+    count = 0
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+        if count % interval == 0:
+            frames.append(frame)
+        count += 1
+    cap.release()
+    return frames
+
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
+
+def calculate_angle(a, b, c, d=None):
+    a = np.array(a)
+    b = np.array(b)
+    c = np.array(c)
+    if d is not None:
+        d = np.array(d)
+        radians = np.arctan2(d[1] - c[1], d[0] - c[0]) - np.arctan2(b[1] - a[1], b[0] - a[0])
+    else:
+        radians = np.arctan2(c[1] - b[1], c[0] - b[0]) - np.arctan2(a[1] - b[1], a[0] - b[0])
+    angle = np.abs(radians * 180.0 / np.pi)
+    if angle > 180.0:
+        angle = 360.0 - angle
+    return angle
 
 def detect_keypoints(video_path):
     cap = cv2.VideoCapture(video_path)
@@ -19,15 +85,13 @@ def detect_keypoints(video_path):
         ret, frame = cap.read()
         if not ret:
             break
-
         image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         results = pose.process(image_rgb)
         if results.pose_landmarks:
             keypoints = [(lm.x, lm.y, lm.z) for lm in results.pose_landmarks.landmark]
             keypoints_list.append(keypoints)
         else:
-            keypoints_list.append([])  # Agregar una lista vacía si no se detectan keypoints
-
+            keypoints_list.append([])
     cap.release()
     pose.close()
     return keypoints_list
@@ -36,10 +100,8 @@ def analyze_keypoints(video_path):
     keypoints_list = detect_keypoints(video_path)
     fps = None
     analysis_results = []
-
     for frame_idx, keypoints in enumerate(keypoints_list):
         second = frame_idx // fps if fps else 0
-
         if not keypoints:
             analysis_results.append({
                 'segundo': second,
@@ -65,31 +127,25 @@ def analyze_keypoints(video_path):
             })
             continue
 
-        # Extraer puntos clave izquierdos
         left_shoulder = keypoints[mp_pose.PoseLandmark.LEFT_SHOULDER.value]
         left_elbow = keypoints[mp_pose.PoseLandmark.LEFT_ELBOW.value]
         left_wrist = keypoints[mp_pose.PoseLandmark.LEFT_WRIST.value]
         left_hand = keypoints[mp_pose.PoseLandmark.LEFT_INDEX.value]
-
-        # Extraer puntos clave derechos
         right_shoulder = keypoints[mp_pose.PoseLandmark.RIGHT_SHOULDER.value]
         right_elbow = keypoints[mp_pose.PoseLandmark.RIGHT_ELBOW.value]
         right_wrist = keypoints[mp_pose.PoseLandmark.RIGHT_WRIST.value]
         right_hand = keypoints[mp_pose.PoseLandmark.RIGHT_INDEX.value]
 
-        # Calcular ángulos izquierdos
         left_shoulder_angle = calculate_angle(left_shoulder, left_elbow, left_wrist)
         left_elbow_angle = calculate_angle(left_elbow, left_wrist, left_hand)
         left_wrist_angle = calculate_angle(left_elbow, left_wrist, left_hand)
         left_hand_angle = calculate_angle(left_elbow, left_wrist, left_hand)
 
-        # Calcular ángulos derechos
         right_shoulder_angle = calculate_angle(right_shoulder, right_elbow, right_wrist)
         right_elbow_angle = calculate_angle(right_elbow, right_wrist, right_hand)
         right_wrist_angle = calculate_angle(right_elbow, right_wrist, right_hand)
         right_hand_angle = calculate_angle(right_elbow, right_wrist, right_hand)
 
-        # Si no se ha establecido aún el FPS, se establece ahora
         if fps is None:
             cap = cv2.VideoCapture(video_path)
             fps = int(cap.get(cv2.CAP_PROP_FPS))
@@ -120,7 +176,7 @@ def analyze_keypoints(video_path):
 
     return analysis_results, fps
 
-def draw_keypoints_and_angles(video_path):
+def draw_keypoints_and_angles(video_path, output_folder, output_video_folder, json_folder):
     analysis_results, fps = analyze_keypoints(video_path)
 
     cap = cv2.VideoCapture(video_path)
@@ -132,21 +188,19 @@ def draw_keypoints_and_angles(video_path):
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     
     video_name = os.path.splitext(os.path.basename(video_path))[0]
-    video_frame_folder = os.path.join(OUTPUT_FOLDER, video_name)
+    video_frame_folder = os.path.join(output_folder, video_name)
     output_video_name = f"{video_name}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.mp4"
-    output_video_path = os.path.join(OUTPUT_VIDEO_FOLDER, output_video_name)
+    output_video_path = os.path.join(output_video_folder, output_video_name)
     json_filename = f"{video_name}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-    json_path = os.path.join(JSON_FOLDER, json_filename)
+    json_path = os.path.join(json_folder, json_filename)
 
-    # Crear carpetas si no existen
     if not os.path.exists(video_frame_folder):
         os.makedirs(video_frame_folder)
-    if not os.path.exists(OUTPUT_VIDEO_FOLDER):
-        os.makedirs(OUTPUT_VIDEO_FOLDER)
-    if not os.path.exists(JSON_FOLDER):
-        os.makedirs(JSON_FOLDER)
+    if not os.path.exists(output_video_folder):
+        os.makedirs(output_video_folder)
+    if not os.path.exists(json_folder):
+        os.makedirs(json_folder)
 
-    # Crear el video marcado
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter(output_video_path, fourcc, fps, (frame_width, frame_height))
 
@@ -166,38 +220,29 @@ def draw_keypoints_and_angles(video_path):
         left_hand_angle = analysis_results[i]['angulo_mano_izquierdo']
         right_hand_angle = analysis_results[i]['angulo_mano_derecho']
 
-        if keypoints:
-            for keypoint in keypoints:
-                x, y, _ = int(keypoint[0] * frame.shape[1]), int(keypoint[1] * frame.shape[0]), keypoint[2]
-                cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
+        for i, keypoint in enumerate(keypoints):
+            x, y, z = keypoint
+            x, y = int(x * frame_width), int(y * frame_height)
+            cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
         
-        # Mostrar los ángulos en el frame
-        if left_shoulder_angle is not None:
-            cv2.putText(frame, f'Angulo Hombro Izq: {left_shoulder_angle:.2f}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-        if right_shoulder_angle is not None:
-            cv2.putText(frame, f'Angulo Hombro Der: {right_shoulder_angle:.2f}', (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-        if left_elbow_angle is not None:
-            cv2.putText(frame, f'Angulo Codo Izq: {left_elbow_angle:.2f}', (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-        if right_elbow_angle is not None:
-            cv2.putText(frame, f'Angulo Codo Der: {right_elbow_angle:.2f}', (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-        if left_wrist_angle is not None:
-            cv2.putText(frame, f'Angulo Muneca Izq: {left_wrist_angle:.2f}', (10, 110), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-        if right_wrist_angle is not None:
-            cv2.putText(frame, f'Angulo Muneca Der: {right_wrist_angle:.2f}', (10, 130), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-        if left_hand_angle is not None:
-            cv2.putText(frame, f'Angulo Mano Izq: {left_hand_angle:.2f}', (10, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-        if right_hand_angle is not None:
-            cv2.putText(frame, f'Angulo Mano Der: {right_hand_angle:.2f}', (10, 170), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
+        for (lm1, lm2) in [((mp_pose.PoseLandmark.LEFT_SHOULDER, mp_pose.PoseLandmark.LEFT_ELBOW),
+                            (mp_pose.PoseLandmark.RIGHT_SHOULDER, mp_pose.PoseLandmark.RIGHT_ELBOW))]:
+            x1, y1, _ = keypoints[lm1.value]
+            x2, y2, _ = keypoints[lm2.value]
+            x1, y1 = int(x1 * frame_width), int(y1 * frame_height)
+            x2, y2 = int(x2 * frame_width), int(y2 * frame_height)
+            cv2.line(frame, (x1, y1), (x2, y2), (0, 255, 255), 2)
+            cv2.putText(frame, f'{left_shoulder_angle:.2f}' if lm1 == mp_pose.PoseLandmark.LEFT_SHOULDER else f'{right_shoulder_angle:.2f}',
+                        (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
 
-        frame_path = os.path.join(video_frame_folder, f'frame_{frame_count:04d}.jpg')
-        cv2.imwrite(frame_path, frame)
         out.write(frame)
         frame_count += 1
 
     cap.release()
     out.release()
 
-    with open(json_path, 'w') as json_file:
-        json.dump(analysis_results, json_file, indent=4)
+    with open(json_path, 'w') as f:
+        json.dump(analysis_results, f, indent=4)
 
-    return video_frame_folder, output_video_path, json_path
+    print(f"Video procesado guardado en: {output_video_path}")
+    print(f"Datos analizados guardados en: {json_path}")
