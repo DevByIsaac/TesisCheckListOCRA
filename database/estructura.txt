@@ -1,0 +1,27 @@
+/mi_proyecto_flask
+│
+├── /app
+│   ├── __init__.py              # Inicializa el paquete de la aplicación
+│   ├── routes.py                # Define las rutas de tu aplicación
+│   ├── models.py                # Define los modelos de base de datos
+│   ├── forms.py                 # Define los formularios (si usas WTForms)
+│   ├── utils.py                 # Funciones utilitarias (si es necesario)
+│   ├── /static
+│   │   ├── style.css            # Hojas de estilo CSS
+│   │   └── script.js            # Archivos JavaScript
+│   ├── /templates
+│   │   ├── base.html            # Plantilla base para otras plantillas
+│   │   ├── upload_video.html    # Plantilla para carga de videos
+│   │   ├── video_analysis.html  # Plantilla para análisis de videos
+│   │   ├── results.html         # Plantilla para resultados
+│   │   └── employee_info.html   # Plantilla para información del empleado
+│   ├── /uploads                 # Carpeta para guardar archivos subidos
+│   └── /data                    # Carpeta para almacenar archivos de datos
+│
+├── /migrations                  # Archivos de migraciones para la base de datos
+├── /tests                       # Pruebas unitarias para tu aplicación
+│   └── test_basic.py            # Pruebas básicas
+│
+├── config.py                    # Archivo de configuración
+├── requirements.txt             # Lista de dependencias del proyecto
+└── run.py                       # Archivo para ejecutar la aplicación Flask

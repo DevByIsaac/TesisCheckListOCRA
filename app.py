@@ -43,13 +43,13 @@ def teardown_appcontext(exception):
 
 # Importa y registra los Blueprints
 from routes.auth import auth  # Asumiendo que has creado un archivo auth.py
-app.register_blueprint(auth) """
-
+app.register_blueprint(auth) 
+if __name__ == '__main__':
+    app.run(debug=True)"""
 # Resto de tu configuración y rutas
 #--------------------------------------------------------------------------------FIN CONEXION A LA BASE DE DATOS POSGREST--------------------
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
 
 app = Flask(__name__)
 app.secret_key = 'Landacay05'
