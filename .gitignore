@@ -1,4 +1,4 @@
 venv/
 admin_sdk.json
-database.py
 __pycache__
+python/static/resultados
