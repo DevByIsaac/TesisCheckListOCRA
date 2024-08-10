@@ -1,4 +1,3 @@
-<!-- info_ocra.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -33,7 +32,7 @@
 <body class="bg-light">
     <!-- Topbar Start -->
     {% include 'topbar.html' %}
-     <!-- Topbar End -->    
+    <!-- Topbar End -->    
 
     <!-- Navbar Start -->
     {% include 'navbar.html' %}
@@ -43,28 +42,85 @@
         <div class="row">
             <div class="col-lg-8">
                 <!-- Información OCRA Start -->
-                <div class="bg-white p-4">
+                <div class="bg-white p-4 shadow-sm">
                     <h1 class="text-primary mb-4">Información sobre el Método OCRA</h1>
-                    <p>El método OCRA (Occupational Repetitive Actions) es una herramienta utilizada para evaluar el riesgo ergonómico asociado con tareas repetitivas en el entorno laboral. Este método permite identificar y cuantificar los riesgos relacionados con la repetitividad de las tareas y la carga física que estas imponen en el trabajador.</p>
-                    <h2 class="mt-4">Cómo Funciona</h2>
-                    <p>El análisis OCRA se basa en una serie de parámetros y factores que se deben evaluar para determinar el nivel de riesgo ergonómico. Estos parámetros incluyen:</p>
-                    <ul>
-                        <li>La frecuencia de la tarea</li>
-                        <li>La duración de la tarea</li>
-                        <li>La fuerza aplicada</li>
-                        <li>La postura adoptada</li>
-                        <li>El número de repeticiones</li>
-                    </ul>
-                    <p>El método proporciona una puntuación que ayuda a identificar si las condiciones laborales son aceptables o si es necesario realizar ajustes para reducir el riesgo de lesiones.</p>
+                    <p>El método OCRA (Occupational Repetitive Actions) es una herramienta esencial para evaluar el riesgo ergonómico asociado con tareas repetitivas en el entorno laboral. Esta metodología ayuda a identificar y cuantificar los riesgos relacionados con la repetitividad de las tareas y la carga física impuesta en el trabajador, ofreciendo una valoración objetiva de las condiciones laborales.</p>
                     
-                    <h2 class="mt-4">Beneficios de Utilizar OCRA</h2>
+                    <h2 class="mt-4">Componentes del Análisis OCRA</h2>
+                    <p>El análisis OCRA considera una variedad de factores para evaluar el riesgo ergonómico. Los principales componentes incluyen:</p>
                     <ul>
-                        <li>Identificación temprana de riesgos ergonómicos</li>
-                        <li>Mejora en las condiciones laborales</li>
-                        <li>Reducción de lesiones relacionadas con el trabajo</li>
-                        <li>Optimización de los procesos y tareas</li>
+                        <li><strong>Frecuencia de la Tarea:</strong> Número de repeticiones por hora o por jornada laboral.</li>
+                        <li><strong>Duración de la Tarea:</strong> Tiempo total dedicado a la tarea repetitiva.</li>
+                        <li><strong>Fuerza Aplicada:</strong> Nivel de fuerza utilizado durante la tarea.</li>
+                        <li><strong>Postura Adoptada:</strong> Posición del cuerpo durante la tarea.</li>
+                        <li><strong>Número de Repeticiones:</strong> Cantidad de veces que se repite una acción específica.</li>
                     </ul>
 
+                    <h2 class="mt-4">Cálculo del Índice OCRA</h2>
+                    <p>El índice OCRA se calcula a partir de los factores anteriores, y se utiliza para clasificar el nivel de riesgo en categorías que van desde "Aceptable" hasta "Inaceptable". Aquí se detallan algunos de los factores utilizados en el cálculo:</p>
+                    <ul>
+                        <li><strong>Factor de Recuperación (FR):</strong> Tiempo necesario para la recuperación muscular.</li>
+                        <li><strong>Factor de Frecuencia (FF):</strong> Frecuencia de la tarea realizada.</li>
+                        <li><strong>Factor de Fuerza (FFz):</strong> Cantidad de fuerza aplicada.</li>
+                        <li><strong>Factor de Posturas y Movimientos (FP):</strong> Evaluación de las posturas y movimientos.</li>
+                        <li><strong>Factor de Riesgos Adicionales (FC):</strong> Evaluación de riesgos adicionales.</li>
+                        <li><strong>Multiplicador de Duración (MD):</strong> Ajuste en función del tiempo de exposición.</li>
+                    </ul>
+
+                    <h2 class="mt-4">Ejemplo de Resultados</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Factor de Recuperación (FR)</th>
+                                    <th>Factor de Frecuencia (FF)</th>
+                                    <th>Factor de Fuerza (FFz)</th>
+                                    <th>Factor de Posturas y Movimientos (FP)</th>
+                                    <th>Factor de Riesgos Adicionales (FC)</th>
+                                    <th>Multiplicador de Duración (MD)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0</td>
+                                    <td>2,5</td>
+                                    <td>0</td>
+                                    <td>8</td>
+                                    <td>0,6</td>
+                                    <td>0,5</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6"></td>
+                                </tr>
+                                <tr>
+                                    <td>Índice Check List OCRA</td>
+                                    <td>Nivel de Riesgo</td>
+                                    <td>Acción Recomendada</td>
+                                    <td>Índice OCRA Equivalente</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="highlight">
+                                    <td>5,55</td>
+                                    <td>Aceptable</td>
+                                    <td>No se requiere</td>
+                                    <td>1.6 - 2.2</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2 class="mt-4">Recomendaciones para Reducir el Riesgo</h2>
+                    <p>Para mitigar los riesgos identificados por el análisis OCRA, considere las siguientes recomendaciones:</p>
+                    <ul>
+                        <li>Implementar pausas regulares para permitir la recuperación muscular.</li>
+                        <li>Revisar y ajustar la fuerza requerida en las tareas.</li>
+                        <li>Modificar las posturas de trabajo para evitar posiciones incómodas.</li>
+                        <li>Optimizar el diseño del lugar de trabajo para mejorar la ergonomía.</li>
+                    </ul>
+                    
                     <h2 class="mt-4">Más Información</h2>
                     <p>Para obtener más detalles sobre cómo aplicar el método OCRA en su entorno laboral, consulte el manual o contacte con un especialista en ergonomía.</p>
                 </div>

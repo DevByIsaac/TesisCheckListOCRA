@@ -1,44 +1,46 @@
 /* register.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 /* Estilos generales para el formulario de registro */
 .register-form-container {
-    background-color: #EBE9F1; /* Fondo claro para el contenedor */
+    background-color: #F9F9F9; /* Fondo claro para el contenedor */
     border-radius: 8px;
     padding: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .register-form-container h2 {
-    color: #4C47EA; /* Color del título */
+    color: #2E8B57; /* Color del título (verde oscuro) */
     margin-bottom: 20px;
 }
 
 .form-group label {
-    color: #4C47EA; /* Color de las etiquetas */
+    color: #2E8B57; /* Color de las etiquetas (verde oscuro) */
 }
 
 .form-control {
     border-radius: 4px;
-    border: 1px solid #D6D2E0;
+    border: 1px solid #B0B0B0; /* Color del borde de los campos (gris claro) */
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     padding: 10px;
 }
 
 .form-control:focus {
-    border-color: #9A99CA; /* Color del borde al enfocar */
-    box-shadow: 0 0 0 0.2rem rgba(156, 165, 179, 0.25);
+    border-color: #FFA500; /* Color del borde al enfocar (naranja) */
+    box-shadow: 0 0 0 0.2rem rgba(255, 165, 0, 0.25); /* Color del borde al enfocar (naranja) */
 }
 
 .btn-primary {
-    background-color: #EDB72F; /* Color de fondo del botón */
+    background-color: #FFA500; /* Color de fondo del botón (naranja) */
     border: none;
     border-radius: 4px;
     padding: 10px 20px;
     font-size: 16px;
+    color: white; /* Color del texto del botón */
 }
 
 .btn-primary:hover {
-    background-color: #D6D2E0; /* Color de fondo del botón al pasar el mouse */
+    background-color: #FF8C00; /* Color de fondo del botón al pasar el mouse (naranja oscuro) */
 }
 
 .alert {
@@ -48,13 +50,13 @@
 }
 
 .alert-success {
-    background-color: #D6D2E0; /* Color de fondo para mensajes de éxito */
-    color: #4C47EA;
+    background-color: #DFFFD6; /* Color de fondo para mensajes de éxito (verde claro) */
+    color: #2E8B57; /* Color del texto para mensajes de éxito (verde oscuro) */
 }
 
 .alert-danger {
-    background-color: #f42749; /* Color de fondo para mensajes de error */
-    color: white;
+    background-color: #F8D7DA; /* Color de fondo para mensajes de error (rojo claro) */
+    color: #721C24; /* Color del texto para mensajes de error (rojo oscuro) */
 }
 
 .form-footer {
@@ -63,13 +65,14 @@
 }
 
 .form-footer a {
-    color: #4C47EA;
+    color: #2E8B57; /* Color del enlace en el pie de página (verde oscuro) */
     text-decoration: none;
 }
 
 .form-footer a:hover {
     text-decoration: underline;
 }
+
 .small-image {
     width: 250px;
     height: 200px;
@@ -84,4 +87,64 @@ h2.d-flex {
 
 h2.d-flex .small-image {
     margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+/* register.css */
+
+.register-form-container {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.register-form-container h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.register-form-container .small-image {
+    width: 50px;
+    height: 50px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #555;
+}
+
+.form-control {
+    border-radius: 5px;
+    border-color: #ddd;
+}
+
+.btn-primary {
+    background-color: #4C47EA;
+    border-color: #4C47EA;
+}
+
+.btn-primary:hover {
+    background-color: #3a39c2;
+    border-color: #3537b6;
+}
+
+.form-footer p {
+    color: #555;
+}
+
+.form-footer a {
+    color: #4C47EA;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+/* Asegúrate de que la imagen se ajuste al ancho del contenedor */
+.img-responsive {
+    max-width: 50%;
+    height: auto;
+}
+.img-responsive_ocra {
+    max-width: 100%;
+    height: auto;
 }

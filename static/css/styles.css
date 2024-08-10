@@ -83,3 +83,102 @@ th {
     display: block;
     margin: auto; /* Centra la imagen verticalmente */
 }
+/* Estilo para el contenedor de las tablas */
+.table-container {
+    max-height: 600px; /* Ajusta la altura máxima según sea necesario */
+    overflow-y: auto; /* Permite el desplazamiento vertical */
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    max-width: max-content;  /*Asegura que el contenedor use el ancho completo del contenedor padre */
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    position: relative; /* Asegura que el contenedor pueda ser desplazado */
+}
+
+/* Estilo para los encabezados de la tabla */
+.table th {
+    background-color: #f8f9fa; /* Color de fondo para los encabezados */
+    color: #343a40; /* Color del texto de los encabezados */
+}
+
+/* Estilo para las filas de la tabla */
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tr:hover {
+    background-color: #ddd;
+}
+
+/* Estilo para los títulos de las tablas */
+.table-container h4 {
+    background-color: #FFA500; /* Color de fondo para los títulos */
+    color: #fff; /* Color del texto de los títulos */
+    padding: 10px;
+    margin: 0;
+    border-radius: 5px 5px 0 0;
+    position: sticky;
+    top: 0;
+}
+/* Estilo opcional para permitir el movimiento del contenedor */
+.table-container {
+    resize: both; /* Permite redimensionar el contenedor tanto en ancho como en alto */
+    overflow: auto; /* Agrega barras de desplazamiento si es necesario */
+    width: 100%; /* Asegura que el contenedor se expanda a todo el ancho disponible */
+}
+
+
+
+/* Contenedor principal para video y tabla */
+.video-and-table-container {
+    display: flex; /* Usa flexbox para alinear los elementos en línea */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: flex-start; /* Alinea los elementos al principio verticalmente */
+}
+
+/* Estilo para el contenedor del video */
+.video-container {
+    flex: 2; /* Toma más espacio en la fila */
+    margin-right: 20px; /* Espacio entre el video y la tabla */
+}
+
+/* Estilo para el contenedor de la tabla del mapa de calor */
+.heatmap-container {
+    flex: 1; /* Toma menos espacio en la fila */
+    max-width: 400px; /* Ajusta el ancho máximo según sea necesario */
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+}
+
+/* Estilo para la tabla del mapa de calor */
+.heatmap-table {
+    width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
+    border-collapse: collapse; /* Elimina los espacios entre bordes de celdas */
+}
+
+/* Estilo para los encabezados de la tabla */
+.heatmap-table th {
+    background-color: #f8f9fa; /* Color de fondo para los encabezados */
+    color: #343a40; /* Color del texto de los encabezados */
+    padding: 8px;
+}
+
+/* Estilo para las filas de la tabla */
+.heatmap-table td, .heatmap-table th {
+    border: 1px solid #ddd; /* Borde de celdas */
+    padding: 8px; /* Espaciado interno de celdas */
+}
+
+.heatmap-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.heatmap-table tr:hover {
+    background-color: #ddd;
+}
+
+
+/* Estilo para la fila destacada en la tabla de resultados OCRA */
+.table-container .results-table tr.highlight {
+    background-color: #d4edda; /* Verde claro */
+    color: #155724; /* Color del texto para contraste */
+}

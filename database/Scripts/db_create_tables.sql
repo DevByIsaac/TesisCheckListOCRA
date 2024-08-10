@@ -17,23 +17,32 @@ CREATE TABLE Empleado (
     sexo VARCHAR(1) NOT NULL,
     edad INTEGER NOT NULL,
     puesto VARCHAR(255) NOT NULL,
-    estatura FLOAT NOT NULL,
-    horas_trabajo TIME NOT NULL,
-    horas_descanso TIME NOT NULL,
+    duracion_turno INTEGER,
+    duracion_descanso INTEGER,
+    duracion_tiempo_libre INTEGER,
     created_by VARCHAR(50) NOT NULL,  -- Usuario que creó el registro
     updated_by VARCHAR(50) NOT NULL   -- Usuario que actualizó el registro
 );
+
 
 CREATE TABLE Actividades (
     id_actividad SERIAL PRIMARY KEY,
     usuario_id INTEGER NOT NULL,
     tipo_actividad VARCHAR(255) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
-    fecha_actividad TIMESTAMP NOT NULL,
+    actividad_repetitiva BOOLEAN,
+    num_pausas INTEGER,
+    lunch_break_duration INTEGER,
+    puntaje_ATD INTEGER,
+    puntaje_ATE FLOAT,
+    puntaje_acciones_fuerza INTEGER,
+    puntaje_FSO INTEGER,
+    puntaje_FFM INTEGER,
     created_by VARCHAR(50) NOT NULL,  -- Usuario que creó el registro
     updated_by VARCHAR(50) NOT NULL,  -- Usuario que actualizó el registro
     FOREIGN KEY (usuario_id) REFERENCES users(user_id)  -- Corregido el nombre de la tabla
 );
+
 
 -- Creación de la tabla AnalisisVideo
 CREATE TABLE AnalisisVideo (

@@ -25,7 +25,10 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 import psycopg2
 from psycopg2 import sql
 from database import get_db_connection, close_db_connection
-
+from flask import Flask, render_template, request, redirect, url_for
+from flask_wtf import FlaskForm
+from wtforms import StringField, SelectField, IntegerField, TimeField, SubmitField
+from wtforms.validators import DataRequired
 #auth = Blueprint('auth', __name__)
 #--------------------------------------------------------------------------------CONEXION A LA BASE DE DATOS POSGREST--------------------
 
@@ -285,12 +288,56 @@ def info_ocra():
     return render_template("info_ocra.html")    
 #----------------------------------------------------------------------RUTA REGISTRAR TRABAJADOR-----------------
 @app.route('/registro_trabajador')
-@requiere_user
+#@requiere_user
 def registro_trabajador():
     return render_template("registrar_trabajador.html")
+#----------------------------------------------------------------------RUTA REGISTRAR EMPLEADO OCRA-----------------
+""" @app.route('/registro_empleado')
+#@requiere_user
+def registro_empleado():
+    return render_template("registro_empleado.html") """
+class RegistroEmpleadoForm(FlaskForm):
+    rol = StringField('Rol', validators=[DataRequired()])
+    nombre = StringField('Nombre', validators=[DataRequired()])
+    apellido = StringField('Apellido', validators=[DataRequired()])
+    sexo = SelectField('Sexo', choices=[('M', 'Masculino'), ('F', 'Femenino')], validators=[DataRequired()])
+    edad = IntegerField('Edad', validators=[DataRequired()])
+    puesto = StringField('Puesto', validators=[DataRequired()])
+    duracion_turno = TimeField('Duración del Turno', format='%H:%M', validators=[DataRequired()])
+    duracion_descanso = TimeField('Duración del Descanso', format='%H:%M', validators=[DataRequired()])
+    duracion_tiempo_libre = TimeField('Duración del Tiempo Libre', format='%H:%M', validators=[DataRequired()])
+    created_by = StringField('Creado Por', validators=[DataRequired()])
+    updated_by = StringField('Actualizado Por', validators=[DataRequired()])
+    submit = SubmitField('Registrar')
+
+@app.route('/registro_empleado', methods=['GET', 'POST'])
+def registro_empleado():
+    form = RegistroEmpleadoForm()
+    if form.validate_on_submit():
+        # Aquí iría el código para procesar el formulario
+        # Ejemplo de redirección después de procesar el formulario
+        return redirect(url_for('registro_empleado'))
+    
+    return render_template('registro_empleado.html', form=form)
+#----------------------------------------------------------------------SUBIR VIDEO OCRA--------------------------------------------------------------------
+@app.route('/cargar_video', methods=['GET', 'POST'])
+def cargar_video():
+    if request.method == 'POST':
+        # Aquí puedes manejar la lógica para procesar el video subido y otros datos del formulario
+        # Ejemplo: 
+        # video = request.files.get('uploadVideo')
+        # if video:
+        #     video.save(os.path.join('ruta/a/guardar', video.filename))
+        #     # Procesar video o almacenar información adicional
+        
+        pass  # Eliminar esto cuando agregues la lógica para manejar el POST
+        
+    # Renderiza la plantilla 'cargar_video.html' cuando se accede con GET o POST (sin lógica adicional)
+    return render_template("cargar_video.html")
+
 #----------------------------------------------------------------------RUTA REGISTRAR PUESTO DE TRABAJO-----------------
 @app.route('/registrar_puesto')
-@requiere_user
+#@requiere_user
 def registrar_puesto():
     return render_template("registrar_puesto.html")
 #----------------------------------------------------------------------RUTA REGISTRO USUARIO-----------------

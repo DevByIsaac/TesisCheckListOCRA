@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}Cargar Video - ERGORICE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+            <h2 class="my-4 d-flex align-items-center">
+                <img src="{{ url_for('static', filename='imagenes/Designer (10).jpeg') }}" alt="Image"
+                    class="img-responsive mr-2">
+                Cargar Video
+            </h2>
+            <!-- Botón para subir video -->
+            <div class="form-group mb-4">
+                <label for="uploadVideo">Subir Video:</label>
+                <input type="file" class="form-control-file" id="uploadVideo" name="uploadVideo" accept="video/*">
+            </div>
+            <!-- Combo box para seleccionar el método -->
+            <div class="form-group mb-4">
+                <label for="metodo">Método:</label>
+                <select class="form-control" id="metodo" name="metodo">
+                    <option value="OCRA">OCRA</option>
+                </select>
+            </div>
+
+            <!-- Combo box para seleccionar el empleado -->
+            <div class="form-group mb-4">
+                <label for="empleado">Empleado:</label>
+                <select id="empleado" name="empleado" class="form-control">
+                    <option value="1">Isaac Gómez</option>
+                    <option value="2">Jordano Sornoza</option>
+                    <option value="3">Klever Franco</option>
+                    <option value="4">Matias Peñafiel</option>
+                    <!-- Añadir más opciones según sea necesario -->
+                </select>
+                </select>
+            </div>
+            <!-- Espacio para visualizar el video -->
+            <div class="video-container mb-4">
+                <video id="videoPlayer" controls>
+                    <source src="" id="videoSource" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <button class="btn btn-secondary mt-2" id="downloadVideo">Descargar Video Marcado</button>
+            </div>
+            <img src="{{ url_for('static', filename='imagenes/mapa_calor_ocra.png') }}" alt="Image"
+                    class="img-responsive_ocra mr-2">
+            <!-- Grid de tabla con datos generales del análisis -->
+            <!-- Contenedor principal -->
+            <div class="container mt-5">
+                <!-- Fila para las tablas -->
+                <div class="row">
+                    <!-- Grid para la primera tabla -->
+                    <div class="col-md-6">
+                        <div class="table-container">
+                            <h4>Datos del Análisis</h4>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Segundo</th>
+                                        <th>Frame</th>
+                                        <th>Análisis Video</th>
+                                        <th>Ángulo Hombro Izquierdo</th>
+                                        <th>Ángulo del Hombro Derecho</th>
+                                        <th>Ángulo Codo Izquierdo</th>
+                                        <th>Ángulo Codo Derecho</th>
+                                        <th>Ángulo de Muñeca Izquierda</th>
+                                        <th>Ángulo de Muñeca Derecha</th>
+                                        <th>Ángulo Mano Izquierdo</th>
+                                        <th>Ángulo Mano Derecho</th>
+                                        <th>Posición Hombro Izquierdo</th>
+                                        <th>Posición Hombro Derecho</th>
+                                        <th>Posición Codo Izquierdo</th>
+                                        <th>Posición Codo Derecho</th>
+                                        <th>Posición Muñeca Izquierda</th>
+                                        <th>Posición Muñeca Derecha</th>
+                                        <th>Posición Mano Izquierda</th>
+                                        <th>Posición Mano Derecho</th>
+                                        <th>Tiempo Neto de Trabajo Repetitivo</th>
+                                        <th>Tiempo Neto del Ciclo</th>
+                                        <th>Factor de Recuperación</th>
+                                        <th>FF</th>
+                                        <th>Factor de Fuerza</th>
+                                        <th>Factor de Posturas y Movimientos</th>
+                                        <th>Factor de Riesgos Adicionales</th>
+                                        <th>Multiplicador de Duración</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>C:\Tesis\TestErgo\muestra\maquila012.mp4</td>
+                                        <td>38,39560055</td>
+                                        <td>32,53858348</td>
+                                        <td>170,9577599</td>
+                                        <td>152,7118062</td>
+                                        <td>170,9577599</td>
+                                        <td>152,7118062</td>
+                                        <td>170,9577599</td>
+                                        <td>152,7118062</td>
+                                        <td>[List]</td>
+                                        <td>[List]</td>
+                                        <td>[List]</td>
+                                        <td>[List]</td>
+                                        <td>[List]</td>
+                                        <td>[List]</td>
+                                        <td>[List]</td>
+                                        <td>[List]</td>
+                                        <td>1,886956522</td>
+                                        <td>0,03773913</td>
+                                        <td>0</td>
+                                        <td>2,5</td>
+                                        <td>0</td>
+                                        <td>8</td>
+                                        <td>0,6</td>
+                                        <td>0,5</td>
+                                    </tr>
+                                    <!-- Añadir más filas según sea necesario -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Grid de tabla con resultados y botón para descargar Excel -->
+                        <div class="col-md-6">
+                            <div class="table-container">
+                                <h4>Resultados OCRA</h4>
+                                <table class="table table-bordered results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Factor de Recuperación (FR)</th>
+                                            <th>Factor de Frecuencia (FF)</th>
+                                            <th>Factor de Fuerza (FFz)</th>
+                                            <th>Factor de Posturas y Movimientos (FP)</th>
+                                            <th>Factor de Riesgos Adicionales (FC)</th>
+                                            <th>Multiplicador de Duración (MD)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>0</td>
+                                            <td>2,5</td>
+                                            <td>0</td>
+                                            <td>8</td>
+                                            <td>0,6</td>
+                                            <td>0,5</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Índice Check List OCRA</td>
+                                            <td>Nivel de Riesgo</td>
+                                            <td>Acción Recomendada</td>
+                                            <td>Índice OCRA Equivalente</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="highlight">
+                                            <td>5,55</td>
+                                            <td>Aceptable</td>
+                                            <td>No se requiere</td>
+                                            <td>1.6 - 2.2</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary mt-2" id="downloadExcel">Descargar Excel</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
